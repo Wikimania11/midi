@@ -306,7 +306,7 @@ the_exit:
 							unsigned len_key_s = track[trk][p++];
 							int sf = track[trk][p++];
 							unsigned mi = track[trk][p++];
-							std::cout << " - Key Signature: ";
+							std::cout << " - Key Signature: " << len_key_s <<" ";
 							if (sf < 0) std::cout << sf*(-1) << " бемолей, "; else std::cout << sf << " диезов, ";
 							if (mi==0) std::cout << "мажор" << std::endl; else std::cout << "минор" << std::endl;
 						} break;
@@ -322,10 +322,10 @@ the_exit:
 				}
 
 				case 0x80 ... 0x8f: {
-					unsigned chan = event_type & 0x0fU;
+					//unsigned chan = event_type & 0x0fU;
 				    unsigned note = unsigned(track[trk][p++]) & 0x7fU;
 				    unsigned velocity = unsigned(track[trk][p++]) & 0x7fU;
-				    std::cout << " - Note Off на канале " << chan <<  std::hex << ", выключаем ноту " << note << " со скоростью "  << velocity << std::endl;
+				    std::cout << " - Note Off " <<  std::hex << ", выключаем ноту " << note << " со скоростью "  << velocity << std::endl;
 
 				    if(note_now == note) {
 						auto fm = std::make_shared<FMWaveGenerator>();
@@ -342,10 +342,10 @@ the_exit:
 				} break;
 				case 0x90 ... 0x9f: {
 
-					unsigned chan = event_type & 0x0fU;
+					//unsigned chan = event_type & 0x0fU;
 					unsigned note = unsigned(track[trk][p++]) & 0x7fU;
 					unsigned velocity = unsigned(track[trk][p++]) & 0x7fU;
-					std::cout << " - Note On на канале " << chan <<  std::hex << ", включаем ноту " << note << " со скоростью " << velocity << std::endl;
+					std::cout << " - Note On " <<  std::hex << ", включаем ноту " << note << " со скоростью " << velocity << std::endl;
 
 
 					auto fm = std::make_shared<FMWaveGenerator>();
