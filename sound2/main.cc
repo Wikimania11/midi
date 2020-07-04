@@ -1,7 +1,7 @@
 /*
  * main.cc
  *
- *  Created on: 27 ˇÌ‚. 2020 „.
+ *  Created on: 27 —è–Ω–≤. 2020 –≥.
  *      Author: prepod
  */
 
@@ -123,8 +123,8 @@ the_exit:
 
 
 
-		//file.open("MIDI_sample.mid", std::ios::in | std::ios::binary);
-		file.open("2033_main_theme.mid", std::ios::in | std::ios::binary);
+		file.open("MIDI_sample.mid", std::ios::in | std::ios::binary);
+		//file.open("stalker-call_of_pripyat_guitar_11.mid", std::ios::in | std::ios::binary);
 
 		int chunk_type;
 		int MThd_length;
@@ -140,7 +140,7 @@ the_exit:
 				'T'*0x00000100 +
 				'h'*0x00010000 +
 				'd'*0x01000000))
-			std::cout << "Œ, ˝ÚÓ Á‡„ÓÎÓ‚ÓÍ!" << std::endl;
+			std::cout << "–û, —ç—Ç–æ –∑–∞–≥–æ–ª–æ–≤–æ–∫!" << std::endl;
 
 		file.read(reinterpret_cast<char*>(&MThd_length), sizeof(MThd_length));
 		MThd_length = ntohl(MThd_length);
@@ -158,9 +158,9 @@ the_exit:
 		MThd_division = ntohs(MThd_division);
 		std::cout << "MThd division: " << MThd_division << std::endl;
 		if (MThd_division & 0x8000) {
-			std::cout << "≈‰ËÌËˆ‡ ËÁÏÂÂÌËˇ - SMPTE" << std::endl;
+			std::cout << "–ï–¥–∏–Ω–∏—Ü–∞ –∏–∑–º–µ—Ä–µ–Ω–∏—è - SMPTE" << std::endl;
 		} else {
-			std::cout << "≈‰ËÌËˆ‡ ËÁÏÂÂÌËˇ - TPQN" << std::endl;
+			std::cout << "–ï–¥–∏–Ω–∏—Ü–∞ –∏–∑–º–µ—Ä–µ–Ω–∏—è - TPQN" << std::endl;
 		}
 
 		track.resize(MThd_tracks);
@@ -172,15 +172,15 @@ the_exit:
 					'T'*0x00000100 +
 					'r'*0x00010000 +
 					'k'*0x01000000)) {
-				std::cout << "Œ, ‡ ˝ÚÓ ‰ÓÓÊÍ‡ " << i << std::endl;
+				std::cout << "–û, –∞ —ç—Ç–æ –¥–æ—Ä–æ–∂–∫–∞ " << i << std::endl;
 			} else {
-				std::cout << "ŒÈ, ˝ÚÓ ÌÂ ‰ÓÓÊÍ‡ :(" << std::endl;
+				std::cout << "–û–π, —ç—Ç–æ –Ω–µ –¥–æ—Ä–æ–∂–∫–∞ :(" << std::endl;
 				break;
 			}
 			int trk_length;
 			file.read(reinterpret_cast<char*>(&trk_length), sizeof(int));
 			trk_length = ntohl(trk_length);
-			std::cout << "  ƒÎËÌ‡: " << trk_length << std::endl;
+			std::cout << "  –î–ª–∏–Ω–∞: " << trk_length << std::endl;
 			track[i].resize(trk_length);
 			file.read(&track[i][0], trk_length);
 		}
@@ -188,7 +188,7 @@ the_exit:
 		size_t trk = 0;
 
 
-		std::cout << "ƒÎˇ ‰ÂÏÓÌÒÚ‡ˆËË ·Û‰ÂÏ ‡·ÓÚ‡Ú¸ ÚÓÎ¸ÍÓ Ò ‰ÓÓÊÍÓÈ " << trk << std::endl;
+		std::cout << "–î–ª—è –¥–µ–º–æ–Ω—Å—Ç—Ä–∞—Ü–∏–∏ –±—É–¥–µ–º —Ä–∞–±–æ—Ç–∞—Ç—å —Ç–æ–ª—å–∫–æ —Å –¥–æ—Ä–æ–∂–∫–æ–π " << trk << std::endl;
 
 
 
@@ -219,7 +219,7 @@ the_exit:
 
 			switch(event_type) {
 				case 0xff: {
-					std::cout << std::endl << " ›ÚÓ ÏÂÚ‡ÒÓ·˚ÚËÂ ";
+					std::cout << std::endl << " –≠—Ç–æ –º–µ—Ç–∞—Å–æ–±—ã—Ç–∏–µ ";
 					unsigned ev = unsigned(track[trk][p++]) & 0xffU;
 					std::cout << std::hex << ev ;
 					switch(ev) {
@@ -281,7 +281,7 @@ the_exit:
 							unsigned t_len = track[trk][p++] - 1;
 							unsigned temp = track[trk][p++] & 0xffU;
 							while (t_len--) temp = (temp << 8) | (track[trk][p++] & 0xffU);
-							std::cout << " - Set Tempo " <<  std::dec << temp << " ÏËÍÓÒÂÍÛÌ‰" << std::endl;
+							std::cout << " - Set Tempo " <<  std::dec << temp << " –º–∏–∫—Ä–æ—Å–µ–∫—É–Ω–¥" << std::endl;
 						} break;
 						case 0x54:{
 							unsigned len_offset = track[trk][p++];
@@ -298,23 +298,23 @@ the_exit:
 							unsigned razm_n = pow(2,track[trk][p++] & 0xffU);
 							unsigned metronom = track[trk][p++] & 0xffU;
 							unsigned doli = track[trk][p++] & 0xffU;
-							std::cout << " - Time Signature:" <<  len_time_s   <<" –‡ÁÏÂ " << razm_v << "/"  << razm_n
-									<< ", ÍÓÎË˜ÂÒÚ‚Ó ÚËÍÓ‚ ‚ Û‰‡Â ÏÂÚÓÌÓÏ‡ " <<  std::dec << metronom
-									<< ", ÍÓÎË˜ÂÒÚ‚Ó 32-ı ‰ÓÎÂÈ ‚ 24 ÚËÍ‡ı " <<  std::dec << doli << std::endl;
+							std::cout << " - Time Signature:" <<  len_time_s   <<" –†–∞–∑–º–µ—Ä " << razm_v << "/"  << razm_n
+									<< ", –∫–æ–ª–∏—á–µ—Å—Ç–≤–æ —Ç–∏–∫–æ–≤ –≤ —É–¥–∞—Ä–µ –º–µ—Ç—Ä–æ–Ω–æ–º–∞ " <<  std::dec << metronom
+									<< ", –∫–æ–ª–∏—á–µ—Å—Ç–≤–æ 32-—Ö –¥–æ–ª–µ–π –≤ 24 —Ç–∏–∫–∞—Ö " <<  std::dec << doli << std::endl;
 						} break;
 						case 0x59:{
 							unsigned len_key_s = track[trk][p++];
 							int sf = track[trk][p++];
 							unsigned mi = track[trk][p++];
 							std::cout << " - Key Signature: " << len_key_s <<" ";
-							if (sf < 0) std::cout << sf*(-1) << " ·ÂÏÓÎÂÈ, "; else std::cout << sf << " ‰ËÂÁÓ‚, ";
-							if (mi==0) std::cout << "Ï‡ÊÓ" << std::endl; else std::cout << "ÏËÌÓ" << std::endl;
+							if (sf < 0) std::cout << sf*(-1) << " –±–µ–º–æ–ª–µ–π, "; else std::cout << sf << " –¥–∏–µ–∑–æ–≤, ";
+							if (mi==0) std::cout << "–º–∞–∂–æ—Ä" << std::endl; else std::cout << "–º–∏–Ω–æ—Ä" << std::endl;
 						} break;
 						case 0x7f:
 							std::cout << "- Sequencer Specific Meta-Event" << std::endl;
 							break;
 						default: {
-							std::cout << "ıÁ, ˜ËÌË Ò‚ÓÈ ÍÓ‰" << std::endl;
+							std::cout << "—Ö–∑, —á–∏–Ω–∏ —Å–≤–æ–π –∫–æ–¥" << std::endl;
 							return 1;
 						}
 					}
@@ -325,7 +325,7 @@ the_exit:
 					//unsigned chan = event_type & 0x0fU;
 				    unsigned note = unsigned(track[trk][p++]) & 0x7fU;
 				    unsigned velocity = unsigned(track[trk][p++]) & 0x7fU;
-				    std::cout << " - Note Off " <<  std::hex << ", ‚˚ÍÎ˛˜‡ÂÏ ÌÓÚÛ " << note << " ÒÓ ÒÍÓÓÒÚ¸˛ "  << velocity << std::endl;
+				    std::cout << " - Note Off " <<  std::hex << ", –≤—ã–∫–ª—é—á–∞–µ–º –Ω–æ—Ç—É " << note << " —Å–æ —Å–∫–æ—Ä–æ—Å—Ç—å—é "  << velocity << std::endl;
 
 				    if(note_now == note) {
 						auto fm = std::make_shared<FMWaveGenerator>();
@@ -345,7 +345,7 @@ the_exit:
 					//unsigned chan = event_type & 0x0fU;
 					unsigned note = unsigned(track[trk][p++]) & 0x7fU;
 					unsigned velocity = unsigned(track[trk][p++]) & 0x7fU;
-					std::cout << " - Note On " <<  std::hex << ", ‚ÍÎ˛˜‡ÂÏ ÌÓÚÛ " << note << " ÒÓ ÒÍÓÓÒÚ¸˛ " << velocity << std::endl;
+					std::cout << " - Note On " <<  std::hex << ", –≤–∫–ª—é—á–∞–µ–º –Ω–æ—Ç—É " << note << " —Å–æ —Å–∫–æ—Ä–æ—Å—Ç—å—é " << velocity << std::endl;
 
 
 					auto fm = std::make_shared<FMWaveGenerator>();
@@ -363,7 +363,7 @@ the_exit:
 				} break;
 
 				case 0xa0 ... 0xaf:
-					std::cout << " - ÔÓÎËÙÓÌË˜ÂÒÍËÈ Aftertouch" << std::endl;
+					std::cout << " - –ø–æ–ª–∏—Ñ–æ–Ω–∏—á–µ—Å–∫–∏–π Aftertouch" << std::endl;
 					break;
 				case 0xb0 ... 0xbf: {
 					unsigned par1 = unsigned(track[trk][p++]) & 0xffU;
@@ -377,7 +377,7 @@ the_exit:
 				} break;
 
 				case 0xd0 ... 0xdf: {
-					std::cout << " - Í‡Ì‡Î¸Ì˚È Aftertouch" << std::endl;
+					std::cout << " - –∫–∞–Ω–∞–ª—å–Ω—ã–π Aftertouch" << std::endl;
 				} break;
 				case 0xe0 ... 0xef:{
 					unsigned par1 = unsigned(track[trk][p++]) & 0xffU;
@@ -396,14 +396,33 @@ the_exit:
 					unsigned par1 = unsigned(track[trk][p++]) & 0xffU;
 					std::cout << " - Song Select: " << par1 << std::endl;
 				} break;
-				case 0xf6:
-					std::cout << " - Tune Request" << std::endl;
+				case 0xf6:{
+					std::cout << " - Tune Request" << std::endl;}
 					break;
-				case 0xf8 or 0xfa or 0xfb or 0xfc or 0xfe :
-					;
+				case 0xf7:
+					std::cout << " End of Exclusive" << std::endl;
 					break;
+				case 0xf8:
+					std::cout << " Timing Clock " << std::endl;
+					break;
+				case 0xfa:
+					std::cout << " Start" << std::endl;
+					break;
+				case 0xfb:
+					std::cout << "Continue" << std::endl;
+					break;
+				case 0xfc:
+					std::cout << " Stop" << std::endl;
+					break;
+				case 0xfd:
+					std::cout << " Active Sensing" << std::endl;
+					break;
+				case 0xfe:
+					std::cout << " Reset" << std::endl;
+					break;
+
 				default:{
-					std::cout << std::endl;
+					std::cout <<  "–ß—Ç–æ-—Ç–æ –≥–æ—Ä–∏—Ç(—è)" << std::endl;
 				}
 			}
 
